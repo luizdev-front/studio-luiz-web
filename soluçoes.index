@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studio Luiz Web - Nossas Soluções de Conversão</title>
+    
+    <!-- Link para a fonte Poppins (Google Fonts) -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- Link para ícones (FontAwesome) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        /* CSS RESET E CONFIGURAÇÕES GERAIS (Necessários para a seção funcionar isoladamente) */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; background-color: #0d1b2a; color: #fff; overflow-x: hidden; }
+
+        /* PALETA DE CORES */
+        :root {
+            --navy-escuro: #0d1b2a;
+            --navy-fundo-secao: #0b1622; /* Um navy ligeiramente diferente para destacar */
+            --menta-digital: #64ffda;
+            --cinza-texto: #8892b0;
+            --borda-suave: rgba(100, 255, 218, 0.2);
+            --fundo-vidro: rgba(13, 27, 42, 0.85);
+        }
+
+        /* TÍTULOS E TEXTOS */
+        h2.title-section { font-size: 2.5rem; color: #fff; text-align: center; margin-bottom: 50px; line-height: 1.2; font-weight: 600; }
+        h2.title-section span { color: var(--menta-digital); }
+
+        /* BOTÃO CTA (Incluso para consistência) */
+        .btn-cta {
+            padding: 15px 40px; background-color: var(--menta-digital); color: var(--navy-escuro);
+            text-decoration: none; border-radius: 5px; font-weight: 600; display: inline-block;
+            transition: 0.3s ease-in-out; border: 2px solid transparent;
+            font-size: 0.9rem;
+        }
+        .btn-cta:hover { background-color: transparent; color: var(--menta-digital); border-color: var(--menta-digital); transform: translateY(-3px); }
+
+        /* COMPONENTE DA SEÇÃO: SOLUÇÕES */
+        .secao-solucoes {
+            padding: 100px 10%;
+            background-color: var(--navy-fundo-secao);
+            position: relative;
+        }
+
+        /* GRID DE SERVIÇOS */
+        .grid-solucoes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+
+        /* CARD DE SERVIÇO (Glassmorphism) */
+        .card-solucao {
+            background: var(--fundo-vidro);
+            padding: 40px;
+            border-radius: 10px;
+            border: 1px solid var(--borda-suave);
+            transition: 0.3s ease-in-out;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .card-solucao:hover {
+            transform: translateY(-10px);
+            border-color: var(--menta-digital);
+            box-shadow: 0 10px 30px rgba(100, 255, 218, 0.1);
+        }
+
+        /* ÍCONES */
+        .card-solucao i {
+            font-size: 2.5rem;
+            color: var(--menta-digital);
+            margin-bottom: 25px;
+        }
+
+        /* TÍTULOS DOS CARDS */
+        .card-solucao h3 {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        /* TEXTO DOS CARDS */
+        .card-solucao p {
+            color: var(--cinza-texto);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* FAIXA MENTA DE DESTAQUE (opcional, adicionei para o estilo digital) */
+        .card-solucao::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background-color: var(--menta-digital);
+            transform: scaleX(0);
+            transition: 0.3s ease-in-out;
+        }
+
+        .card-solucao:hover::after {
+            transform: scaleX(1);
+        }
+
+        /* GRID DE CASES (Foco em Resultados de Alta Conversão) */
+        .grid-cases {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            border-top: 1px solid var(--borda-suave);
+            padding-top: 50px;
+        }
+
+        /* ITEM DE RESULTADO */
+        .case-result {
+            text-align: center;
+            padding: 20px;
+            border-left: 3px solid var(--menta-digital);
+            transition: 0.3s ease-in-out;
+        }
+
+        .case-result:hover {
+            background-color: rgba(100, 255, 218, 0.05);
+        }
+
+        /* TÍTULO DO RESULTADO */
+        .case-result h4 {
+            font-size: 1.1rem;
+            color: #fff;
+            margin-bottom: 10px;
+            font-weight: 400;
+        }
+
+        /* NÚMERO DO RESULTADO */
+        .case-result span {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--menta-digital);
+            display: block;
+        }
+
+        /* RESPONSIVIDADE (Ajustes para mobile) */
+        @media (max-width: 768px) {
+            h2.title-section { font-size: 2rem; }
+            .grid-solucoes { gap: 20px; }
+            .grid-cases { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; }
+            .case-result span { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SECTION: SOLUÇÕES (@SOLUCOES) -->
+    <!-- Segue a estratégia Navy Escuro para fundo e Menta Digital para CTAs e ícones -->
+    <section id="solucoes" class="secao-solucoes">
+        
+        <!-- Título focado em Marketing Digital de Alta Conversão -->
+        <h2 class="title-section">Não Entregamos Sites.<span> Criamos Máquinas de Conversão.</span></h2>
+        
+        <!-- Grid principal com os serviços principais da Studio Luiz Web -->
+        <div class="grid-solucoes">
+            
+            <!-- Card 1: Desenvolvimento Full-Stack -->
+            <div class="card-solucao">
+                <i class="fas fa-code"></i> <!-- Ícone de Código -->
+                <h3>Desenvolvimento Full-Stack</h3>
+                <p>Nossa engenharia digital constrói plataformas escaláveis, rápidas e seguras. Do HTML à lógica complexa, garantindo SEO e UX desde a primeira linha de código.</p>
+            </div>
+            
+            <!-- Card 2: E-commerce de Performance -->
+            <div class="card-solucao">
+                <i class="fas fa-shopping-cart"></i> <!-- Ícone de Carrinho -->
+                <h3>E-commerce de Performance</h3>
+                <p>Lojas virtuais desenhadas para UX e conversão de vendas. Otimizamos toda a jornada de compra, garantindo que sua plataforma carregue em segundos e venda em minutos.</p>
+            </div>
+            
+            <!-- Card 3: Otimização SEO -->
+            <div class="card-solucao">
+                <i class="fas fa-search-dollar"></i> <!-- Ícone de Pesquisa/Dinheiro -->
+                <h3>Otimização SEO</h3>
+                <p>Implementamos estratégias avançadas de SEO técnico e de conteúdo. Garantimos que sua empresa seja encontrada pelos clientes qualificados onde eles estão procurando.</p>
+            </div>
+            
+        </div>
+
+        <!-- Seção de Galeria de Resultados (Cases de Sucesso Minimalistas) -->
+        <!-- Mostra que a Studio Luiz Web entrega resultados reais, não apenas serviços técnicos -->
+        <div class="grid-cases">
+            
+            <!-- Case Result A -->
+            <div class="case-result">
+                <h4>Aumento em Vendas Online</h4>
+                <span>+45%</span>
+            </div>
+            
+            <!-- Case Result B -->
+            <div class="case-result">
+                <h4>Redução Custo por Lead</h4>
+                <span>-30%</span>
+            </div>
+            
+            <!-- Case Result C -->
+            <div class="case-result">
+                <h4>Novos Clientes Qualificados</h4>
+                <span>+200%</span>
+            </div>
+            
+        </div>
+        
+    </section>
+
+</body>
+</html>
