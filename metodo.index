@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studio Luiz Web - Nosso Método e Contato</title>
+    
+    <!-- Link para a fonte Poppins (Google Fonts) para consistência -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- Link para ícones (FontAwesome) para os símbolos de tecnologia e contato -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        /* CSS RESET E CONFIGURAÇÕES GERAIS (Necessários para consistência) */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; background-color: #0d1b2a; color: #fff; scroll-behavior: smooth; overflow-x: hidden; }
+
+        /* PALETA DE CORES */
+        :root {
+            --navy-escuro: #0d1b2a;
+            --menta-digital: #64ffda;
+            --cinza-texto: #8892b0;
+            --borda-suave: rgba(100, 255, 218, 0.2);
+            --fundo-vidro: rgba(13, 27, 42, 0.85);
+            --navy-alternativo: #0b1622;
+        }
+
+        /* TÍTULOS E TEXTOS GERAIS */
+        h2.title-section { font-size: 2.5rem; color: #fff; text-align: center; margin-bottom: 50px; line-height: 1.2; font-weight: 600; }
+        h2.title-section span { color: var(--menta-digital); }
+
+        /* BOTÃO CTA (Para os formulários e CTAs de método) */
+        .btn-cta {
+            padding: 15px 40px; background-color: var(--menta-digital); color: var(--navy-escuro);
+            text-decoration: none; border-radius: 5px; font-weight: 600; display: inline-block;
+            transition: 0.3s ease-in-out; border: 2px solid transparent;
+            cursor: pointer; font-size: 0.9rem;
+        }
+        .btn-cta:hover { background-color: transparent; color: var(--menta-digital); border-color: var(--menta-digital); transform: translateY(-3px); }
+
+        /* SEÇÃO 3: NOSSO MÉTODO (@METODO) */
+        .secao-metodo { padding: 100px 10%; background-color: var(--navy-escuro); position: relative; }
+        
+        /* Container da Timeline */
+        .timeline { position: relative; max-width: 800px; margin: 0 auto; padding-left: 30px; }
+        .timeline::before { content: ''; position: absolute; left: 0; top: 0; width: 3px; height: 100%; background: var(--menta-digital); }
+        
+        /* Itens da Timeline */
+        .timeline-item { margin-bottom: 60px; position: relative; opacity: 0; transform: translateY(20px); transition: 0.6s ease-out; }
+        
+        /* Ponto na Timeline */
+        .timeline-item::after { content: ''; position: absolute; left: -36px; top: 0; width: 15px; height: 15px; background: var(--menta-digital); border-radius: 50%; box-shadow: 0 0 10px rgba(100, 255, 218, 0.5); }
+        
+        /* Conteúdo do Item */
+        .timeline-content { padding: 0 30px; }
+        .timeline-content h3 { color: #fff; font-size: 1.3rem; margin-bottom: 10px; font-weight: 600; display: flex; align-items: center; gap: 15px; }
+        
+        /* Símbolos de Código (<discovery>, <code>, etc.) em Menta */
+        .timeline-content h3 span { color: var(--cinza-texto); font-weight: 300; font-size: 0.9rem; font-family: monospace; }
+        
+        .timeline-content p { color: var(--cinza-texto); font-size: 0.95rem; line-height: 1.6; }
+
+        /* SEÇÃO 4: CONTATO (@CONTATO) */
+        .secao-contato { padding: 100px 10%; background-color: var(--navy-alternativo); }
+        
+        /* Flexbox do Contato e Formulário */
+        .flex-contato { display: flex; gap: 60px; align-items: start; }
+        
+        /* Formulário de Qualificação (Glassmorphism) */
+        .form-glass {
+            flex: 2; background: var(--fundo-vidro); padding: 50px; border-radius: 10px;
+            border: 1px solid var(--borda-suave);
+            box-shadow: 0 10px 30px rgba(100, 255, 218, 0.05);
+        }
+        
+        /* Subtítulo do Formulário */
+        .form-glass p.form-subtitle { color: var(--cinza-texto); margin-bottom: 30px; text-align: center; font-size: 1rem; }
+        
+        /* Grupos de Input */
+        .form-group { margin-bottom: 25px; }
+        .form-group label { display: block; color: #fff; margin-bottom: 10px; font-size: 0.9rem; font-weight: 400; }
+        
+        /* Input, Textarea e Select (Estilo Navy) */
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%; padding: 15px; background: rgba(13, 27, 42, 0.5);
+            border: 2px solid var(--borda-suave); border-radius: 5px; color: #fff;
+            font-family: 'Poppins', sans-serif; transition: 0.3s;
+            font-size: 0.95rem;
+        }
+        
+        /* Foco nos Campos */
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+            border-color: var(--menta-digital); outline: none; background: rgba(13, 27, 42, 0.9);
+        }
+
+        /* Informações de Apoio e Telefone */
+        .contact-info { flex: 1; color: var(--cinza-texto); }
+        .contact-info h3 { color: #fff; margin-bottom: 30px; font-weight: 600; font-size: 1.2rem; }
+        .contact-info p { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; font-size: 0.95rem; }
+        
+        /* Ícones em Menta */
+        .contact-info i { color: var(--menta-digital); font-size: 1.2rem; width: 25px; text-align: center; }
+
+        /* Telefone em Destaque (Alta Conversão) */
+        .phone-highlight { color: var(--menta-digital); font-weight: 600; font-size: 1.1rem; text-decoration: none; transition: 0.3s; }
+        .phone-highlight:hover { text-decoration: underline; }
+
+    </style>
+</head>
+<body>
+
+    <!-- MAIN SECTIONS CONTINUATION -->
+    <main>
+
+        <!-- SECTION: NOSSO MÉTODO (@METODO) -->
+        <!-- Foco: Gerar confiança e autoridade através da estratégia "Tech-Strategy". -->
+        <section id="metodo" class="secao-metodo">
+            
+            <h2 class="title-section">Engenharia Digital:<span> Nosso Processo de 4 Passos.</span></h2>
+            
+            <div class="timeline" id="metodoTimeline">
+                
+                <!-- PASSO 1: Tech-Strategy (<discovery>) -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3><span>&lt;discovery&gt;</span> 1. Tech-Strategy</h3>
+                        <p>Analisamos seu modelo de negócio, público-alvo e desafios tecnológicos. Definimos a Stack Tecnológica ideal para garantir escalabilidade e performance. Não usamos templates prontos.</p>
+                    </div>
+                </div>
+                
+                <!-- PASSO 2: UX/UI Design (<wireframe>) -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3><span>&lt;wireframe&gt;</span> 2. UX/UI Design</h3>
+                        <p>Desenhamos a arquitetura da informação e a jornada do usuário. Nosso foco é a UX que elimina atrito e maximiza a taxa de conversão em cada interação.</p>
+                    </div>
+                </div>
+                
+                <!-- PASSO 3: Desenvolvimento & Performance (<code>) -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3><span>&lt;code&gt;</span> 3. Desenvolvimento</h3>
+                        <p>Nossa engenharia Full-Stack constrói o projeto usando código limpo, rápido e seguro. A otimização para SEO e desempenho é implementada desde a primeira linha.</p>
+                    </div>
+                </div>
+                
+                <!-- PASSO 4: Lançamento & Otimização (<launch>) -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3><span>&lt;launch&gt;</span> 4. Lançamento & Otimização</h3>
+                        <p>Entregamos a plataforma, testamos e otimizamos com dados reais. Garantimos a evolução contínua da performance do seu negócio.</p>
+                    </div>
+                </div>
+                
+            </div>
+            
+        </section>
+
+        <!-- SECTION: CONTATO (@CONTATO) -->
+        <!-- Foco: Alta Conversão através do Formulário de Qualificação. -->
+        <section id="contato" class="secao-contato">
+            
+            <h2 class="title-section">Pronto para Escalar sua <span>Presença Digital?</span></h2>
+            
+            <div class="flex-contato">
+                
+                <!-- Formulário de Qualificação (Glassmorphism) -->
+                <!-- Crucial para o Marketing Digital de Alta Conversão da Studio Luiz Web -->
+                <form class="form-glass" id="qualifyForm">
+                    <p class="form-subtitle">Conte-nos sobre seu desafio e receba seu Tech-Audit gratuito.</p>
+                    
+                    <!-- Campo: Nome (Qualificação) -->
+                    <div class="form-group">
+                        <label for="nome">Nome do Empreendedor</label>
+                        <input type="text" id="nome" name="nome" placeholder="Luiz Claudio" required>
+                    </div>
+                    
+                    <!-- Campo: Empresa (Qualificação) -->
+                    <div class="form-group">
+                        <label for="empresa">Nome da Empresa</label>
+                        <input type="text" id="empresa" name="empresa" placeholder="Studio Luiz Web" required>
+                    </div>
+                    
+                    <!-- Campo: E-mail Profissional (Qualificação) -->
+                    <div class="form-group">
+                        <label for="email">E-mail Profissional</label>
+                        <input type="email" id="email" name="email" placeholder="contato@..." required>
+                    </div>
+                    
+                    <!-- Campo: Dropdown Faturamento (Alta Conversão - Filtra o Lead) -->
+                    <div class="form-group">
+                        <label for="faturamento">Faturamento Mensal Atual</label>
+                        <select id="faturamento" name="faturamento" required>
+                            <option value="" disabled selected>Selecione seu faturamento...</option>
+                            <option value="0-10k">R$ 0 - 10k</option>
+                            <option value="10k-50k">R$ 10k - 50k</option>
+                            <option value="50k+">R$ 50k +</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Campo: Desafio (Qualificação) -->
+                    <div class="form-group">
+                        <label for="mensagem">Conte seu desafio digital</label>
+                        <textarea id="mensagem" name="mensagem" rows="5" placeholder="Preciso de uma plataforma SaaS que..." required></textarea>
+                    </div>
+                    
+                    <!-- Botão Menta de Envio -->
+                    <button type="submit" class="btn-cta btn-submit">SOLICITAR TECH-AUDIT GRATUITO</button>
+                    
+                </form>
+
+                <!-- Informações de Apoio e Telefone Atualizado -->
+                <div class="contact-info">
+                    <h3>Studio Luiz Web</h3>
+                    <p><i class="fas fa-envelope"></i> contato@studioluizweb.com.br</p>
+                    <!-- Telefone Menta e Linkável -->
+                    <p><i class="fab fa-whatsapp"></i> <a href="tel:+5513988799046" class="phone-highlight">(13) 98879-9046</a></p>
+                    <p><i class="fas fa-map-marker-alt"></i> Santos/SP</p>
+                </div>
+                
+            </div>
+            
+        </section>
+
+    </main>
+
+    <!-- JS PARA INTERATIVIDADE E ANIMAÇÃO -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // 1. Animação de Flutuação e "Appear" na Timeline (Nosso Método)
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            
+            // Função para verificar se o elemento está visível na tela
+            function checkVisibility() {
+                timelineItems.forEach(item => {
+                    const rect = item.getBoundingClientRect();
+                    // Se o topo do elemento estiver visível na janela
+                    if (rect.top < window.innerHeight - 100) {
+                        item.style.opacity = '1';
+                        item.style.transform = 'translateY(0)';
+                    }
+                });
+            }
+            
+            // Executa na carga e na rolagem
+            checkVisibility();
+            window.addEventListener('scroll', checkVisibility);
+
+            // 2. JS Efeito de Flutuação Suave baseado no Mouse (já existente no projeto)
+            // Este script pode ser reutilizado ou adaptado para a timeline/fundo, se desejado.
+            // Para manter o foco, o efeito de rolagem da timeline acima é o principal.
+
+            // 3. Script para Coletar os Dados do Formulário e Validar (Marketing Digital)
+            document.getElementById('qualifyForm').addEventListener('submit', function(e) {
+                e.preventDefault(); // Impede o envio real para fins de demonstração
+                
+                // Coleta os valores (O Dropdown de Faturamento é crucial para qualificar)
+                const faturamento = document.getElementById('faturamento').value;
+                
+                // Exemplo básico de ação (pode ser enviado para um e-mail/API)
+                console.log("Formulário Submetido Studio Luiz Web:", {
+                    nome: document.getElementById('nome').value,
+                    empresa: document.getElementById('empresa').value,
+                    faturamento: faturamento,
+                    mensagem: document.getElementById('mensagem').value
+                });
+
+                // Simula feedback de conversão e qualificação
+                alert("Obrigado! Recebemos sua solicitação. Vamos analisar seu faturamento de '" + faturamento + "' e agendar seu Tech-Audit gratuito em breve.");
+                this.reset(); // Reseta o formulário
+            });
+        });
+    </script>
+</body>
+</html>
